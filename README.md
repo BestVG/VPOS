@@ -53,11 +53,11 @@ If any of the above checks fail, the user will be notified and given the option 
 ## Building/Running
 The [`Makefile`](Makefile) contains the following targets
 
-`build`: Builds the `bin/live-image` binary which contains the compiled OS
-`clean`: Deletes the `bin` directory, effectively removing the binaries from all previous builds
-`rebuild`: Runs `clean` followed by a `build`
-`run`: Attempts to build and run the `live-image` using [QEMU](https://www.qemu.org/)
-`debug`: Attempts to build and run the `live-image` using QEMU with `guest_errors` logging enabled to `log.txt`
-`disk`: Builds the `live-image` and packages it in `bin/disk.vdi`
-`run-vbox`: Builds `bin/disk.vdi` and attempts to start a `VPOS` vm in [VirtualBox](https://www.virtualbox.org/). (This assumes that a vm named `VPOS` is already configured in VirtualBox)
-`*.mem`: Connects to a running VirtualBox machine and dumps the memory to the requested file
+`build`: Builds the `bin/live-image` binary which contains the compiled OS  
+`clean`: Deletes the `bin` directory, effectively removing the binaries from all previous builds  
+`rebuild`: Runs `clean` followed by a `build`  
+`run`: Attempts to build and run the `live-image` using [QEMU](https://www.qemu.org/)  
+`debug`: Attempts to build and run the `live-image` using QEMU with `guest_errors` logging enabled to `log.txt`  
+`disk`: Builds the `live-image` and packages it in `bin/disk.vdi`  
+`run-vbox`: Builds `bin/disk.vdi` and attempts to start a `VPOS` vm in [VirtualBox](https://www.virtualbox.org/). (This assumes that a vm named `VPOS` is already configured in VirtualBox)  
+`*.mem`: Connects to a running VirtualBox machine and dumps the memory to the requested file  
