@@ -7,19 +7,12 @@ At the moment, we are busy with other things in life, so changes will be slow to
 We are working on migrating the built live-image file to be a functional FAT-32 partition. At the moment, is arranged as follows:
 
 1st sector (loaded to `0x7C00`): boot_section (Contains some FAT-32 metadata; ends with word `0xaa55`)
-
 2nd sector: FS_INFO sector (More FAT-32 metadata)
-
 (dynamic) (loaded to `0x1000`): kernel code (Note: due to the dynamic nature of kernel code, the following sections may not fall exactly on sector boundaries)
-
 Next 2 sectors (1024 bytes): Reserved for the stack
-
 Next 10 sectors (5120 bytes): Reserved for malloc (heap)
-
 After this, any remaining space in the sector is padded with `0x00`
-
 Memory Map (Will be loaded from BIOS into `0x8000`)
-
 Page Tables (Will be generated at `0x100000`)
 
 ## Boot Process
@@ -55,4 +48,16 @@ At the moment, the process for booting the OS is as follows:
 6. Check that all required paging features are supported (PSE, PAE, PAT, and PSE36) (`eax = 0x1` should return `edx & 0x00030048 = 0x00030048`)
 7. Check that [APIC](https://wiki.osdev.org/APIC) is supported (`eax = 0x1` should return `edx & 0x0000200 = 0x0000200`)
 
-If any of the above checks fail, the user will be 
+If any of the above checks fail, the user will be notified and given the option to ignore the error (at risk).
+
+## Building/Running
+The [`Makefile`](Makefile) contains the following targets
+
+`build`: Builds the `bin/live-image` binary which contains the compiled OS
+`clean`: Deletes the `bin` directory, effectively removing the binaries from all previous builds
+`rebuild`: Runs `clean` followed by a `build`
+`run`: Attempts to build and run the `live-image` using [QEMU](https://www.qemu.org/)
+`debug`: Attempts to build and run the `live-image` using QEMU with `guest_errors` logging enabled to `log.txt`
+`disk`: Builds the `live-image` and packages it in `bin/disk.vdi`
+`run-vbox`: Builds `bin/disk.vdi` and attempts to start a `VPOS` vm in [VirtualBox](https://www.virtualbox.org/). (This assumes that a vm named `VPOS` is already configured in VirtualBox)
+`*.mem`: Connects to a running VirtualBox machine and dumps the memory to the requested file
