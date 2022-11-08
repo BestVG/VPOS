@@ -26,7 +26,7 @@ At the moment, the process for booting the OS is as follows:
 6. Jump to kernel
 7. Make sure CPU supports all required features (See [Feature Checks](#feature-checks))
 8. Load the memory map from BIOS (into `0x8000`) (See [`int 0x15, eax=0xE820'`](https://wiki.osdev.org/Detecting_Memory_(x86)#BIOS_Function:_INT_0x15.2C_EAX_.3D_0xE820))
-9. Load GDT
+9. Load [GDT](https://wiki.osdev.org/Global_Descriptor_Table)
 10. Enable protected mode in [`cr0`](https://wiki.osdev.org/CPU_Registers_x86#CR0)
 11. Set all segment registers (besides CS) to the data segment
 12. Update the 32-bit stack pointer to use the stack defined in the kernel
@@ -41,7 +41,7 @@ At the moment, the process for booting the OS is as follows:
 
 ## Feature Checks
 1. Check that the CPU supports [`cpuid`](https://wiki.osdev.org/CPUID) by [changing the CPUID bit](https://wiki.osdev.org/CPUID#Checking_CPUID_availability) in [`EFLAGS`](https://wiki.osdev.org/EFLAGS#EFLAGS_Register)
-2. Check that the CPU's vendor id matches "`AuthenticAMD`" or "`Genuine Intel`" (`eax = 0x00` should return valid values in `ebx` `edx` and `ecx`)
+2. Check that the CPU's vendor id matches "`AuthenticAMD`" or "`GenuineIntel`" (`eax = 0x00` should return valid values in `ebx` `edx` and `ecx`)
 3. Check that the `cpuid` instruction supports all of the `leaves` required to check the remaining features (`eax = 0x00` should return `eax >= 0x80000008`)
 4. Check that long mode is supported (`eax = 0x80000001` should return `edx & 0x20000000 = 0x20000000`)
 5. Check that model specific registers are supported (`eax = 0x1` should return `edx & 0x00000020 = 0x00000020`)
