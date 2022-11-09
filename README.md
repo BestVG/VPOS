@@ -1,7 +1,7 @@
 # VPOS
-An operating system designed (primarily for fun) with the end goal of creating an OS from scratch. We hope to eventually implement advanced features such as native shared library linking support, a gui interface, etc. with minimal support from existing tutorials, so we can arrive at our own solutions and, hopefully, learn a lot about the methodology and issues which arise through this development.
+VPOS is an operating system designed (primarily for fun) with the end goal of creating an OS from scratch. We hope to eventually implement advanced features such as native shared library linking support, a GUI interface, etc. with minimal support from existing tutorials, so we can arrive at our own solutions and, hopefully, learn a lot about the methodology and issues which arise through this development.
 
-At the moment, we are busy with other things in life, so changes will be slow to non-existant for now. Expect more rapid development to return in Summer 2023.
+At the moment, we are busy with other things in life, so changes will be slow for now. Expect more rapid development to return in Summer 2023.
 
 ## Memory Layout
 We are working on migrating the built live-image file to be a functional FAT-32 partition. At the moment, is arranged as follows:
